@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     private bool jumpKeyWasPressed;
     private float horizontalImput;
     private Rigidbody rigidbodyComponent;
-    
+    private int superJumpsRemaining = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,8 @@ public class Player : MonoBehaviour
     //FixedUpdate is called onceevery physics update (100/s)
     private void FixedUpdate() 
     {
+        rigidbodyComponent.velocity = new Vector3(horizontalImput, rigidbodyComponent.velocity.y, 0);
+
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
         {
             return;
@@ -36,14 +39,26 @@ public class Player : MonoBehaviour
 
         if (jumpKeyWasPressed)
         {
-            rigidbodyComponent.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
+            float jumpPower = 5f;
+            if (superJumpsRemaining > 0)
+            {
+                jumpPower *= 2;
+                superJumpsRemaining--;
+            }
+
+            rigidbodyComponent.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
             jumpKeyWasPressed = false;
         }
-
-        rigidbodyComponent.velocity = new Vector3(horizontalImput, rigidbodyComponent.velocity.y, 0);
-
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            Destroy(other.gameObject);
+            superJumpsRemaining++;
 
+        }
+    }
 
 }
 

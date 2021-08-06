@@ -1,14 +1,21 @@
-# Capsule Player README
+# Capsule Player 
+
+Capsule player is an open ended experiment to explore whats possible within the C#/Unity world. This will continue to evolve for some time. 
+
+![Screenshot]()
 
 ### BUGS
 
-- Cannot control lateral movment in air.
+- [/ ] Various friction/physics issues.
 
-- Various friction/physics issues.
-- Infinite falling.
+- [ ] Infinite falling.
+
+- [ ] Movement along z axis.
 
 ### FEATURES TO COME
 
-- Increased map size (playability/robust testing)
-- Powerup acumulator for lg jump
-- Build out 'player' (capsule + head sphere)
+- [ ] Increased map size (playability/robust testing)
+
+- [ /] Powerup acumulator for lg jump
+
+- [ ] Build out 'player' (capsule + head sphere)
