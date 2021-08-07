@@ -1,4 +1,6 @@
-PhysMaterials,
 .DS_Store,
+PhysMaterials,
+PhysMaterials.meta,
 screenshots.meta,
+Player.cs.meta,
 README.md.meta
