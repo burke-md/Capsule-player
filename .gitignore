@@ -1,1 +1,4 @@
-PhysMaterials/
+PhysMaterials,
+.DS_Store,
+screenshots.meta,
+README.md.meta
