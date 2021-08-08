@@ -7,11 +7,12 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform groundCheckTransform = null;
     [SerializeField] private LayerMask playerMask;
     private bool jumpKeyWasPressed;
-    private float horizontalImput;
+    private float horizontalInput;
+    private float verticalInput;
     private Rigidbody rigidbodyComponent;
     private int superJumpsRemaining = 0;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         rigidbodyComponent = GetComponent<Rigidbody>();
@@ -25,12 +26,16 @@ public class Player : MonoBehaviour
          jumpKeyWasPressed = true;
         }
 
-        horizontalImput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal");
+
+        verticalInput = Input.GetAxis("Vertical");
     }
+
     //FixedUpdate is called onceevery physics update (100/s)
     private void FixedUpdate() 
     {
-        rigidbodyComponent.velocity = new Vector3(horizontalImput, rigidbodyComponent.velocity.y, 0);
+
+
 
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
         {
@@ -42,16 +47,21 @@ public class Player : MonoBehaviour
             float jumpPower = 5f;
             if (superJumpsRemaining > 0)
             {
-                jumpPower *= 2;
+                jumpPower *= 1.5f;
                 superJumpsRemaining--;
             }
 
             rigidbodyComponent.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
             jumpKeyWasPressed = false;
         }
+
+        rigidbodyComponent.velocity = new Vector3(horizontalInput, rigidbodyComponent.velocity.y, 0);
+
+
     }
     private void OnTriggerEnter(Collider other)
     {
+        //Collect coins logic
         if (other.gameObject.layer == 7)
         {
             Destroy(other.gameObject);
