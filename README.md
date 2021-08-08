@@ -10,12 +10,16 @@ Capsule player is an open ended experiment to explore whats possible within the 
 
 - [ ] Infinite falling.
 
-- [ ] Movement along z axis.
+- [x] Movement along z axis.
 
 ### FEATURES TO COME
 
-- [ ] Increased map size (playability/robust testing)
+- [x] Increased map size (playability/robust testing)
 
-- [x] Powerup acumulator for lg jump
+- [x] Build out 'player' (capsule + head sphere)
 
-- [ ] Build out 'player' (capsule + head sphere)
+- [] Variable movement speed. (Ability to run)
+
+- [] Camera to follow charecter around corners (See next item)
+
+- [] Perspective options(Improve 3rd person as mentions above, First person mode)

@@ -7,8 +7,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform groundCheckTransform = null;
     [SerializeField] private LayerMask playerMask;
     private bool jumpKeyWasPressed;
-    private float horizontalInput;
-    private float verticalInput;
+    // private float horizontalInput;
+    // private float verticalInput;
+    private float xInput;
+    private float zInput;
     private Rigidbody rigidbodyComponent;
     private int superJumpsRemaining = 0;
 
@@ -26,15 +28,18 @@ public class Player : MonoBehaviour
          jumpKeyWasPressed = true;
         }
 
-        horizontalInput = Input.GetAxis("Horizontal");
+        // horizontalInput = Input.GetAxis("Horizontal");
+        xInput = Input.GetAxis("Horizontal");
 
-        verticalInput = Input.GetAxis("Vertical");
+        // verticalInput = Input.GetAxis("Vertical");
+        zInput = Input.GetAxis("Vertical");
     }
 
     //FixedUpdate is called onceevery physics update (100/s)
     private void FixedUpdate() 
     {
 
+        rigidbodyComponent.velocity = new Vector3(xInput, rigidbodyComponent.velocity.y, zInput);
 
 
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
@@ -55,7 +60,6 @@ public class Player : MonoBehaviour
             jumpKeyWasPressed = false;
         }
 
-        rigidbodyComponent.velocity = new Vector3(horizontalInput, rigidbodyComponent.velocity.y, 0);
 
 
     }
