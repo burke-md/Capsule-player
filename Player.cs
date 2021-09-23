@@ -6,9 +6,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Transform groundCheckTransform = null;
     [SerializeField] private LayerMask playerMask;
+    [SerializeField] Transform playerCamera = null;
+
+    [SerializeField] float mouseSensitivity = 4.25f;
+
     private bool jumpKeyWasPressed;
-    // private float horizontalInput;
-    // private float verticalInput;
     private float xInput;
     private float zInput;
     private Rigidbody rigidbodyComponent;
@@ -28,11 +30,11 @@ public class Player : MonoBehaviour
          jumpKeyWasPressed = true;
         }
 
-        // horizontalInput = Input.GetAxis("Horizontal");
         xInput = Input.GetAxis("Horizontal");
 
-        // verticalInput = Input.GetAxis("Vertical");
         zInput = Input.GetAxis("Vertical");
+        
+        UpdateMouseLook();
     }
 
     //FixedUpdate is called onceevery physics update (100/s)
@@ -60,8 +62,13 @@ public class Player : MonoBehaviour
             jumpKeyWasPressed = false;
         }
 
+    }
+    void UpdateMouseLook()
+    {
+        //Capture direction from mouse
+        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-
+        transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity);
     }
     private void OnTriggerEnter(Collider other)
     {
