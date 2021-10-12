@@ -18,8 +18,8 @@ Capsule player is an open ended experiment to explore whats possible within the 
 
 - [x] Build out 'player' (capsule + head sphere)
 
-- [] Variable movement speed. (Ability to run)
+- [ ] Variable movement speed. (Ability to run)
 
-- [] Camera to follow charecter around corners (See next item)
+- [ ] Camera to follow charecter around corners (See next item)
 
-- [] Perspective options(Improve 3rd person as mentions above, First person mode)
+- [ ] Perspective options(Improve 3rd person as mentions above, First person mode)
